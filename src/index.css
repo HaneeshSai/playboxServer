@@ -1,0 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+@import "./assets/fonts.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.img-bg {
+  background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.5) 60%,
+      rgba(0, 0, 0, 0.5) 60%
+    ),
+    url(https://suratboxcricket.com/box/44/kohali-box-cricket-turf-1-468178.jpeg);
+  background-size: cover;
+}
+
+.cardShadow {
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.373);
+}
