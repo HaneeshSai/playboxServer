@@ -67,5 +67,31 @@
       "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqIZqSVfiLNSo73g2y_2C9TepoOGGjArEkpA&s",
       "name": "Swimming"
     }
+  ],
+  "SportTypesValues": [
+    {
+      "value": "cricket",
+      "label": "Cricket"
+    },
+    {
+      "value": "basketball",
+      "label": "BasketBall"
+    },
+    {
+      "value": "badminton",
+      "label": "Badminton"
+    },
+    {
+      "value": "tennis",
+      "label": "Tennis"
+    },
+    {
+      "value": "football",
+      "label": "FootBall"
+    },
+    {
+      "value": "swimming",
+      "label": "Swimming"
+    }
   ]
 }

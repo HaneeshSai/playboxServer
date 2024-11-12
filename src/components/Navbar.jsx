@@ -21,12 +21,13 @@ export default function Navbar() {
             Search
           </button>
         </div>
-        <div className=" w-[35%] flex items-center justify-between text font-medium">
+        <div className=" w-[45%] flex items-center justify-between text font-medium">
           <Link to="/" className="bg-[#269475] px-2 rounded py-0.5 text-white">
             Book a spot
           </Link>
           <Link to={"/"}>Find your sport</Link>
           <Link to={"/"}>About</Link>
+          <Link to={"/"}>Join Us</Link>
           <Link to={"/"}>Contact</Link>
         </div>
       </div>

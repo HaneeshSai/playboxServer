@@ -4,8 +4,10 @@ import badminton from "../assets/imgs/badminton.png";
 import basketball from "../assets/imgs/basketball.png";
 import data from "../../data.json";
 import BoxCard from "../components/BoxCard";
+import { useNavigate } from "react-router-dom";
 
 export default function Homepage() {
+  const navigate = useNavigate();
   return (
     <div className="h-full flex gap-32 flex-col">
       <div className="flex gap-20 ">
@@ -78,6 +80,20 @@ export default function Homepage() {
               </div>
             </div>
           ))}
+        </div>
+      </div>
+      <div className="mx-24 flex flex-col items-center">
+        <h1 className="text-4xl font-semibold my-1">Do You Own a Box?</h1>
+        <p className="text-lg">Connect with Players and Fill Your Grounds</p>
+
+        <div
+          onClick={() => {
+            navigate("/boxregister");
+          }}
+          className="bg-[#FF6B35] px-7 text-lg w-[300px] my-10 justify-center font-medium rounded-full py-1 gap-4 flex items-center text-white"
+        >
+          <button>Register Your Box Now</button>
+          <i className="fa-solid  fa-arrow-right-long"></i>
         </div>
       </div>
       <div></div>
