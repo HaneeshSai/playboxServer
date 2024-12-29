@@ -36,6 +36,24 @@ const formInputs = [
     name: "placeName",
   },
   {
+    label: "Enter Area Name",
+    placeHolder: "Tirmulghiri",
+    type: "text",
+    name: "area",
+  },
+  {
+    label: "Enter City",
+    placeHolder: "Hyderabad",
+    type: "text",
+    name: "city",
+  },
+  {
+    label: "Enter State",
+    placeHolder: "Telangana",
+    type: "text",
+    name: "state",
+  },
+  {
     label: "Enter Full Address of your box",
     placeHolder: "Address",
     type: "text",
@@ -52,6 +70,12 @@ const formInputs = [
     placeHolder: "400x600",
     type: "text",
     name: "dimentions",
+  },
+  {
+    label: "Open Timings",
+    placeHolder: "6am - 10pm",
+    type: "text",
+    name: "timings",
   },
   {
     label: "Select Supported Sports",
@@ -87,6 +111,8 @@ export default function BoxRegister() {
     phone: "",
     email: "",
     placeName: "",
+    city: "",
+    state: "",
     address: "",
     price: "",
     sports: [],
@@ -94,6 +120,7 @@ export default function BoxRegister() {
     rules: "",
     refundPolicy: "",
     dimentions: "",
+    timings: "",
   });
   const [showGoToOwner, setShowGoToOwner] = useState(false);
 
@@ -116,6 +143,7 @@ export default function BoxRegister() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // return;
     if (formData.ownersName.length <= 2)
       return toast.error("Enter a valid name");
     if (formData.phone.length !== 10)
@@ -189,14 +217,21 @@ export default function BoxRegister() {
                       options={data.SportTypesValues}
                     />
                   ) : e.type === "text" ? (
-                    <input
-                      className="w-full border outline-none border-slate-800 rounded px-2 py-1"
-                      type={e.type}
-                      value={formData[e.name]}
-                      onChange={handleInputChange}
-                      placeholder={e.placeHolder}
-                      name={e.name}
-                    />
+                    <div className="w-full">
+                      <input
+                        className="w-full border outline-none border-slate-800 rounded px-2 py-1"
+                        type={e.type}
+                        value={formData[e.name]}
+                        onChange={handleInputChange}
+                        placeholder={e.placeHolder}
+                        name={e.name}
+                      />
+                      {e.name === "timings" ? (
+                        <p className="text-sm text-red-500 font-medium">
+                          Enter 12am - 12am if open for 24 hours.
+                        </p>
+                      ) : null}
+                    </div>
                   ) : (
                     <textarea
                       name={e.name}

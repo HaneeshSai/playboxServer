@@ -32,12 +32,23 @@ export default function Auth() {
         { name, phone, email: null, isOwner }
       );
 
-      Cookies.set("token", response.data.token);
+      Cookies.set("token", response.data.token, { expires: 7 });
       toast.success(response.data.message);
       await delay(1000);
       refreshNow();
-      if (isOwner) navigate("/boxregister");
-      else navigate("/");
+      if (isOwner) {
+        if (response.data.existing) {
+          navigate("/owner/portal");
+        } else {
+          navigate("/boxregister");
+        }
+      } else {
+        if (Cookies.get("lastViewedBox")) {
+          navigate(`/box/${Cookies.get("lastViewedBox")}`);
+          return;
+        }
+        navigate("/");
+      }
     } catch (error) {
       console.log(error);
       toast.error("Internal Server Error");

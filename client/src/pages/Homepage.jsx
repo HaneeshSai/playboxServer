@@ -1,13 +1,41 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import cricket from "../assets/imgs/cricket.png";
 import badminton from "../assets/imgs/badminton.png";
 import basketball from "../assets/imgs/basketball.png";
 import data from "../../data.json";
 import BoxCard from "../components/BoxCard";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
+import toast from "react-hot-toast";
+import axios from "axios";
+import mainStore from "../store/mainStore";
 
 export default function Homepage() {
   const navigate = useNavigate();
+  const { city, refresh } = mainStore();
+  const [boxes, setBoxes] = useState([]);
+  const [locationSearch, setLocationSearch] = useState("");
+
+  useEffect(() => {
+    city ? getBoxes() : null;
+  }, [city, refresh]);
+
+  const getBoxes = async () => {
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_SERVER_URL}box/getboxes`,
+        {
+          city: city,
+        }
+      );
+      setBoxes(response.data.boxes);
+      // console.log(response.data.boxes);
+    } catch (error) {
+      console.log(error);
+      toast.error("Internal Server Error");
+    }
+  };
+
   return (
     <div className="h-full flex gap-32 flex-col">
       <div className="flex gap-20 ">
@@ -26,10 +54,11 @@ export default function Homepage() {
               <input
                 className="outline-none bg-[#fff0]"
                 type="text"
+                onChange={(e) => setLocationSearch(e.target.value)}
                 placeholder="Search Your Location"
               />
             </div>
-            <button className="bg-[#FF6B35] text-white px-2 py-0.5 rounded font-medium">
+            <button  className="bg-[#FF6B35] text-white px-2 py-0.5 rounded font-medium">
               Search
             </button>
           </div>
@@ -64,12 +93,12 @@ export default function Homepage() {
         <h1 className="text-3xl font-semibold">Nearest Box Sports Places.</h1>
         <p className="text-">
           <i className="fa-solid text-[#269475] mr-2 fa-circle-dot"></i>
-          Hyderabad
+          {city ? city : ""}
         </p>
         <div className="grid mt-10 grid-cols-3 gap-10">
-          {data.nearest.map((e, i) => (
-            <BoxCard key={i} e={e} />
-          ))}
+          {boxes?.length > 0
+            ? boxes.map((e, i) => <BoxCard key={i} e={e} />)
+            : null}
         </div>
       </div>
       <div className="px-24 text-3xl font-semibold">
@@ -100,7 +129,7 @@ export default function Homepage() {
 
         <div
           onClick={() => {
-            navigate("/boxregister");
+            Cookies.get("token") ? navigate("/boxregister") : navigate("/auth");
           }}
           className="bg-[#FF6B35] px-7 text-lg w-[300px] my-10 justify-center font-medium rounded-full py-1 gap-4 flex items-center text-white"
         >

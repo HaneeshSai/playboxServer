@@ -19,3 +19,27 @@
 .cardShadow {
   box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.373);
 }
+
+/* Style the scrollbar track */
+::-webkit-scrollbar {
+  width: 8px; /* Width of the vertical scrollbar */
+  height: 7px; /* Height of the horizontal scrollbar */
+}
+
+/* Style the scrollbar thumb (the draggable part) */
+::-webkit-scrollbar-thumb {
+  background-color: #888; /* Color of the thumb */
+  border-radius: 10px; /* Rounded corners */
+  border: 3px solid #fff; /* Border around the thumb */
+}
+
+/* Style the scrollbar track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Track color */
+  border-radius: 10px;
+}
+
+/* Optional: on hover, change the thumb color */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
