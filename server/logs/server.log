@@ -1,0 +1,239 @@
+2024-12-09 12:48:32 [INFO]: Task start scheduled to run in 87.38 seconds.
+2024-12-09 12:49:21 [INFO]: Task start scheduled to run in 38.918 seconds.
+2024-12-09 12:50:00 [INFO]: starting session
+2024-12-09 12:50:00 [INFO]: Task scheduled to run in 4199.938 seconds.
+2024-12-09 14:00:05 [INFO]: Booking Cancelled
+2024-12-16 08:00:29 [INFO]: Task scheduled to run in 7050.952 seconds.
+2024-12-16 08:00:30 [INFO]: Task start scheduled to run in 6569.506 seconds.
+2024-12-16 08:07:44 [INFO]: Task scheduled to run in 1215.38 seconds.
+2024-12-16 08:07:45 [INFO]: Task start scheduled to run in 734.18 seconds.
+2024-12-16 08:20:00 [INFO]: starting session
+2024-12-16 08:20:00 [INFO]: Task scheduled to run in 4199.92 seconds.
+2024-12-16 08:32:24 [INFO]: Task start scheduled to run in 4655.145 seconds.
+2024-12-16 08:43:52 [INFO]: Task start scheduled to run in 3967.525 seconds.
+2024-12-16 08:51:36 [INFO]: Task start scheduled to run in 3503.078 seconds.
+2024-12-16 08:51:47 [ERROR]: totalTeamSize is not defined
+2024-12-16 08:51:47 [ERROR]: totalTeamSize is not defined
+2024-12-16 08:52:07 [INFO]: Task start scheduled to run in 3472.723 seconds.
+2024-12-16 08:52:12 [ERROR]: totalTeamSize is not defined
+2024-12-16 08:52:12 [ERROR]: totalTeamSize is not defined
+2024-12-16 08:53:38 [INFO]: Task start scheduled to run in 3381.249 seconds.
+2024-12-16 08:53:45 [ERROR]: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column "boxid" does not exist`
+2024-12-16 08:53:45 [ERROR]: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column "boxid" does not exist`
+2024-12-16 08:56:52 [INFO]: Task start scheduled to run in 3187.812 seconds.
+2024-12-16 08:57:02 [ERROR]: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column "boxid" does not exist`
+2024-12-16 08:57:02 [ERROR]: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column "boxid" does not exist`
+2024-12-16 08:59:21 [INFO]: Task start scheduled to run in 3038.141 seconds.
+2024-12-16 08:59:26 [ERROR]: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column "boxid" does not exist`
+2024-12-16 08:59:26 [ERROR]: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column "boxid" does not exist`
+2024-12-16 08:59:43 [INFO]: Task start scheduled to run in 3016.635 seconds.
+2024-12-16 08:59:50 [INFO]: Task start scheduled to run in 3009.792 seconds.
+2024-12-16 08:59:54 [ERROR]: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column "boxid" does not exist`
+2024-12-16 08:59:54 [ERROR]: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column "boxid" does not exist`
+2024-12-16 09:00:09 [INFO]: Task start scheduled to run in 2990.468 seconds.
+2024-12-16 09:00:12 [ERROR]: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column "currentteamsize" does not exist`
+2024-12-16 09:00:12 [ERROR]: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column "currentteamsize" does not exist`
+2024-12-16 09:00:24 [INFO]: Task start scheduled to run in 2975.485 seconds.
+2024-12-16 09:02:16 [INFO]: Task start scheduled to run in 2863.269 seconds.
+2024-12-16 09:03:44 [INFO]: Task start scheduled to run in 2775.258 seconds.
+2024-12-16 09:03:48 [ERROR]: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column "requiredTeamSize" does not exist`
+2024-12-16 09:03:48 [ERROR]: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column "requiredTeamSize" does not exist`
+2024-12-16 09:04:31 [INFO]: Task start scheduled to run in 2728.027 seconds.
+2024-12-16 09:07:07 [INFO]: Task scheduled to run in 13852.745 seconds.
+2024-12-16 09:07:08 [INFO]: Task start scheduled to run in 13371.073 seconds.
+2024-12-16 09:14:58 [INFO]: Task start scheduled to run in 12901.518 seconds.
+2024-12-16 10:51:08 [INFO]: Task start scheduled to run in 7131.196 seconds.
+2024-12-17 08:39:03 [INFO]: starting session
+2024-12-17 08:39:03 [INFO]: Booking Cancelled
+2024-12-17 08:41:41 [INFO]: Task scheduled to run in 11778.945 seconds.
+2024-12-17 08:41:42 [INFO]: Task start scheduled to run in 11297.033 seconds.
+2024-12-17 10:27:40 [INFO]: Task start scheduled to run in 4939.631 seconds.
+2024-12-17 10:32:21 [ERROR]: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column "splitPricePlayer" does not exist`
+2024-12-17 10:32:33 [ERROR]: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column "splitPricePlayer" does not exist`
+2024-12-17 10:32:52 [INFO]: Task start scheduled to run in 4627.235 seconds.
+2024-12-18 18:37:04 [INFO]: starting session
+2024-12-18 18:37:04 [INFO]: Booking Cancelled
+2024-12-18 18:53:20 [INFO]: Task scheduled to run in 7479.703 seconds.
+2024-12-18 18:53:23 [INFO]: Task start scheduled to run in 6996.428 seconds.
+2024-12-18 18:55:40 [INFO]: Task start scheduled to run in 6859.552 seconds.
+2024-12-19 07:48:51 [INFO]: starting session
+2024-12-19 07:48:51 [INFO]: Booking Cancelled
+2024-12-19 07:50:45 [INFO]: Task scheduled to run in 22034.612 seconds.
+2024-12-19 07:50:48 [INFO]: Task start scheduled to run in 21551.542 seconds.
+2024-12-19 07:53:51 [INFO]: Task start scheduled to run in 21368.716 seconds.
+2024-12-19 07:53:56 [ERROR]: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column "TeamName" does not exist`
+2024-12-19 07:53:56 [ERROR]: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column "TeamName" does not exist`
+2024-12-19 07:54:06 [INFO]: Task start scheduled to run in 21353.294 seconds.
+2024-12-19 08:31:52 [INFO]: Task scheduled to run in 80767.772 seconds.
+2024-12-19 08:31:53 [INFO]: Task start scheduled to run in 80286.276 seconds.
+2024-12-19 08:33:58 [INFO]: Task scheduled to run in 77041.492 seconds.
+2024-12-19 08:34:00 [INFO]: Task start scheduled to run in 76559.347 seconds.
+2024-12-19 08:38:15 [INFO]: Task start scheduled to run in 18704.307 seconds.
+2024-12-19 08:39:34 [INFO]: Task start scheduled to run in 18625.806 seconds.
+2024-12-19 08:39:42 [ERROR]: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column "confirmed" does not exist`
+2024-12-19 08:39:42 [ERROR]: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column "confirmed" does not exist`
+2024-12-19 08:39:55 [INFO]: Task start scheduled to run in 18604.045 seconds.
+2024-12-19 08:49:15 [INFO]: Task start scheduled to run in 18044.929 seconds.
+2024-12-19 08:50:10 [INFO]: Task start scheduled to run in 17989.864 seconds.
+2024-12-19 17:48:04 [INFO]: starting session
+2024-12-19 17:48:04 [INFO]: Booking Cancelled
+2024-12-19 18:01:03 [INFO]: Task start scheduled to run in 42536.973 seconds.
+2024-12-19 21:50:49 [INFO]: Task start scheduled to run in 28750.459 seconds.
+2024-12-19 21:52:31 [INFO]: Task start scheduled to run in 28648.725 seconds.
+2024-12-19 21:58:01 [INFO]: Task scheduled to run in 35998.687 seconds.
+2024-12-19 21:58:02 [INFO]: Task start scheduled to run in 35517.488 seconds.
+2024-12-20 07:52:34 [INFO]: starting session
+2024-12-20 07:52:34 [INFO]: Booking Cancelled
+2024-12-20 08:04:08 [INFO]: Task scheduled to run in 17631.134 seconds.
+2024-12-20 08:04:11 [INFO]: Task start scheduled to run in 17148.576 seconds.
+2024-12-20 08:45:35 [INFO]: starting session
+2024-12-20 08:45:35 [INFO]: Booking Cancelled
+2024-12-20 10:24:32 [INFO]: starting session
+2024-12-20 10:24:32 [INFO]: Booking Cancelled
+2024-12-21 15:03:37 [INFO]: starting session
+2024-12-21 15:03:37 [INFO]: Booking Cancelled
+2024-12-21 15:04:41 [INFO]: Task scheduled to run in 17598.093 seconds.
+2024-12-21 15:04:43 [INFO]: Task start scheduled to run in 17116.653 seconds.
+2024-12-21 15:11:51 [INFO]: Task start scheduled to run in 16688.711 seconds.
+2024-12-21 15:22:34 [INFO]: Task start scheduled to run in 16045.51 seconds.
+2024-12-21 15:23:33 [INFO]: Task start scheduled to run in 15986.995 seconds.
+2024-12-21 15:26:39 [INFO]: Task start scheduled to run in 15800.778 seconds.
+2024-12-21 15:26:49 [INFO]: Task start scheduled to run in 15790.081 seconds.
+2024-12-21 15:27:21 [INFO]: Task start scheduled to run in 15758.024 seconds.
+2024-12-21 15:30:24 [ERROR]: number is not defined
+2024-12-21 15:30:51 [INFO]: Task start scheduled to run in 15548.476 seconds.
+2024-12-21 15:31:01 [ERROR]: 
+Invalid `prisma.extraPlayers.create()` invocation:
+
+{
+  data: {
+    name: "asdasdwdad",
+    userId: 6,
+    numberOfPlayers: 2,
+    price: 80,
+    bookingId: 55,
+    paymentStatus: "waiting"
+                   ~~~~~~~~~
+  }
+}
+
+Argument `paymentStatus`: Invalid value provided. Expected Boolean, provided String.
+2024-12-21 15:31:59 [INFO]: Task start scheduled to run in 15480.551 seconds.
+2024-12-21 15:34:57 [INFO]: Task start scheduled to run in 15302.977 seconds.
+2024-12-21 15:41:09 [ERROR]: 
+Invalid `prisma.extraPlayers.update()` invocation:
+
+{
+  where: {
+    id: "3"
+        ~~~
+  },
+  data: {
+    paymentStatus: true
+  }
+}
+
+Argument `id`: Invalid value provided. Expected Int, provided String.
+2024-12-21 15:41:48 [INFO]: Task start scheduled to run in 14891.818 seconds.
+2024-12-21 15:52:50 [INFO]: Task start scheduled to run in 14229.374 seconds.
+2024-12-21 15:53:34 [INFO]: Task start scheduled to run in 14185.297 seconds.
+2024-12-23 16:32:46 [INFO]: starting session
+2024-12-23 16:32:46 [INFO]: Booking Cancelled
+2024-12-23 16:34:21 [INFO]: Task scheduled to run in 19418.661 seconds.
+2024-12-23 16:34:24 [INFO]: Task start scheduled to run in 18935.751 seconds.
+2024-12-23 16:34:43 [ERROR]: Cannot read properties of undefined (reading 'toLowerCase')
+2024-12-23 16:36:09 [INFO]: Task scheduled to run in 8510.08 seconds.
+2024-12-23 16:36:51 [INFO]: Task scheduled to run in 1268.428 seconds.
+2024-12-23 16:36:54 [INFO]: Task start scheduled to run in 785.859 seconds.
+2024-12-23 16:37:43 [INFO]: Task scheduled to run in 1216.186 seconds.
+2024-12-23 16:37:45 [INFO]: Task start scheduled to run in 734.16 seconds.
+2024-12-23 16:38:03 [INFO]: Task scheduled to run in 1196.053 seconds.
+2024-12-23 16:44:46 [INFO]: Task scheduled to run in 7993.29 seconds.
+2024-12-23 16:44:46 [INFO]: Task scheduled to run in 793.283 seconds.
+2024-12-23 16:44:46 [INFO]: Task start scheduled to run in 18313.248 seconds.
+2024-12-23 16:44:46 [INFO]: Task start scheduled to run in 313.247 seconds.
+2024-12-23 16:44:46 [INFO]: Task start scheduled to run in 313.246 seconds.
+2024-12-23 16:50:00 [INFO]: starting session
+2024-12-23 16:50:00 [INFO]: Task scheduled to run in 4199.925 seconds.
+2024-12-23 16:50:00 [INFO]: starting session
+2024-12-23 16:50:00 [INFO]: Task scheduled to run in 4199.924 seconds.
+2024-12-23 17:00:56 [INFO]: Booking Cancelled
+2024-12-27 11:22:00 [INFO]: starting session
+2024-12-27 11:22:00 [INFO]: Booking Cancelled
+2024-12-27 11:22:00 [INFO]: Booking Cancelled
+2024-12-28 20:37:24 [INFO]: Task scheduled to run in 1235.866 seconds.
+2024-12-28 20:37:25 [INFO]: Task start scheduled to run in 754.302 seconds.
+2024-12-29 15:40:55 [INFO]: starting session
+2024-12-29 15:40:55 [INFO]: Booking Cancelled

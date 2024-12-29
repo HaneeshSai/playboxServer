@@ -1,0 +1,100 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Box {
+  id Int @id @default(autoincrement())
+  ownerId Int @unique
+  owner user @relation(fields: [ownerId], references: [id])
+  ownersName String
+  phone String
+  email String
+  placeName String
+  fullAddress String
+  price Decimal
+  city String
+  state String
+  area String
+  timings String
+  dimentions String
+  availableSports String
+  description String?
+  rules String?
+  refundPolicy String?
+  currentStatus currentStatus[]
+  booking bookings[]
+}
+
+model currentStatus {
+  id Int @id @default(autoincrement())
+  totalTeamSize Int
+  currentTeamSize Int
+  status String  //[a = available, o = occupied, l = looking]
+  // nextAvailableSpot String  //[a ? i (immediate) : time]
+  price Decimal
+  boxId Int @unique
+  Box Box @relation(fields: [boxId], references: [id]) 
+}
+
+model user {
+  id Int @id @default(autoincrement())
+  fullName String
+  phone String?
+  email String?
+  owner Boolean
+  box Box[]
+  bookings bookings[]
+  extraPlayers extraPlayers[]
+}
+
+model bookings {
+  id Int @id @default(autoincrement())
+  teamName String
+  totalTeamSize Int
+  currentTeamSize Int
+  needExtraPlayers Boolean @default(false) // New field
+  extraPlayersNeeded Int?                 // New field
+  joinedPlayers Int @default(0)           // Track number of extra players who joined
+  splitPricePerPlayer Decimal?            // New field: price split per player
+  status String                           // 'pending', 'confirmed', 'cancelled', 'completed'
+  price Int
+  remainingAmount Decimal?                // New field: remaining amount if no players join
+  sport String
+  paymentStatus String
+  amountPayed Decimal
+  createdAt DateTime @default(now())
+  timing String
+  boxId Int
+  userId Int
+  user user @relation(fields: [userId], references: [id])
+  box Box @relation(fields: [boxId], references: [id])
+  extraPlayers extraPlayers[]                        // New relation to track players joining this booking
+}
+
+model extraPlayers {
+  id Int @id @default(autoincrement())    // New model to track individual players
+  name String?
+  userId Int
+  user user @relation(fields: [userId], references: [id])
+  numberOfPlayers Int
+  bookingId Int
+  price Int
+  paymentStatus Boolean @default(false)  // To confirm payment by the player
+  createdAt DateTime @default(now())
+  bookings bookings @relation(fields: [bookingId], references: [id])
+}
+
+
+
+
