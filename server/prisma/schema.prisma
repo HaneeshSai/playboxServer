@@ -1,0 +1,184 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Box {
+  id Int @id @default(autoincrement())
+  ownerId Int @unique
+  owner user @relation(fields: [ownerId], references: [id])
+  ownersName String
+  phone String
+  email String
+  placeName String
+  fullAddress String
+  price Decimal
+  city String
+  state String
+  area String
+  timings String
+  dimentions String
+  availableSports String
+  description String?
+  rules String?
+  refundPolicy String?
+  currentStatus currentStatus[]
+  booking bookings[]
+  events Event[]
+  coachings CoachingProgram[]
+}
+
+model currentStatus {
+  id Int @id @default(autoincrement())
+  totalTeamSize Int
+  currentTeamSize Int
+  status String  //[a = available, o = occupied, l = looking]
+  price Decimal
+  boxId Int @unique
+  Box Box @relation(fields: [boxId], references: [id]) 
+}
+
+model user {
+  id Int @id @default(autoincrement())
+  fullName String
+  phone String?
+  email String?
+  owner Boolean
+  box Box[]
+  bookings bookings[]
+  extraPlayers extraPlayers[]
+  eventRegistrations EventRegistration[]
+  coachingRegistrations CoachingRegistration[]
+}
+
+model bookings {
+  id Int @id @default(autoincrement())
+  teamName String
+  totalTeamSize Int
+  currentTeamSize Int
+  needExtraPlayers Boolean @default(false)
+  extraPlayersNeeded Int?
+  joinedPlayers Int @default(0)
+  splitPricePerPlayer Decimal?
+  status String
+  price Int
+  remainingAmount Decimal?
+  sport String
+  paymentStatus String
+  amountPayed Decimal
+  createdAt DateTime @default(now())
+  timing String
+  boxId Int
+  userId Int
+  user user @relation(fields: [userId], references: [id])
+  box Box @relation(fields: [boxId], references: [id])
+  extraPlayers extraPlayers[]
+}
+
+model extraPlayers {
+  id Int @id @default(autoincrement())
+  name String?
+  userId Int
+  user user @relation(fields: [userId], references: [id])
+  numberOfPlayers Int
+  bookingId Int
+  price Int
+  paymentStatus Boolean @default(false)
+  createdAt DateTime @default(now())
+  bookings bookings @relation(fields: [bookingId], references: [id])
+}
+
+model Event {
+  id String @id @default(uuid())
+  name String
+  description String?
+  bannerImageUrl String?
+  prizeMoney Float?
+  eventDate DateTime
+  registrationDeadline DateTime
+  maxTeams Int
+  teamSize Int
+  pricePerTeam Float
+  venueId Int
+  sportType String
+  rules String[]
+  status String @default("upcoming")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  venue Box @relation(fields: [venueId], references: [id])
+  registrations EventRegistration[]
+}
+
+model EventRegistration {
+  id String @id @default(uuid())
+  eventId String
+  teamName String
+  captainUserId Int
+  teamSize Int
+  paymentStatus String @default("pending")
+  registrationStatus String @default("pending")
+  contactNumber String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  event Event @relation(fields: [eventId], references: [id])
+  captain user @relation(fields: [captainUserId], references: [id])
+  teamMembers TeamMember[]
+}
+
+model TeamMember {
+  id String @id @default(uuid())
+  registrationId String
+  playerName String
+  playerEmail String?
+  playerContact String?
+  createdAt DateTime @default(now())
+
+  registration EventRegistration @relation(fields: [registrationId], references: [id])
+}
+
+model CoachingProgram {
+  id String @id @default(uuid())
+  name String
+  description String?
+  bannerImageUrl String?
+  coachName String
+  coachBio String?
+  experienceYears Int?
+  durationWeeks Int
+  price Float
+  maxStudents Int?
+  venueId Int
+  sportType String
+  schedule Json
+  highlights String[]
+  status String @default("active")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  venue Box @relation(fields: [venueId], references: [id])
+  registrations CoachingRegistration[]
+}
+
+model CoachingRegistration {
+  id String @id @default(uuid())
+  programId String
+  userId Int
+  studentName String
+  age Int?
+  contactNumber String?
+  emergencyContact String?
+  medicalConditions String?
+  paymentStatus String @default("pending")
+  registrationStatus String @default("pending")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  program CoachingProgram @relation(fields: [programId], references: [id])
+  user user @relation(fields: [userId], references: [id])
+}

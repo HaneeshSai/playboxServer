@@ -1,0 +1,157 @@
+2024-12-16 08:51:47 [ERROR]: totalTeamSize is not defined
+2024-12-16 08:51:47 [ERROR]: totalTeamSize is not defined
+2024-12-16 08:52:12 [ERROR]: totalTeamSize is not defined
+2024-12-16 08:52:12 [ERROR]: totalTeamSize is not defined
+2024-12-16 08:53:45 [ERROR]: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column "boxid" does not exist`
+2024-12-16 08:53:45 [ERROR]: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column "boxid" does not exist`
+2024-12-16 08:57:02 [ERROR]: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column "boxid" does not exist`
+2024-12-16 08:57:02 [ERROR]: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column "boxid" does not exist`
+2024-12-16 08:59:26 [ERROR]: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column "boxid" does not exist`
+2024-12-16 08:59:26 [ERROR]: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column "boxid" does not exist`
+2024-12-16 08:59:54 [ERROR]: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column "boxid" does not exist`
+2024-12-16 08:59:54 [ERROR]: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column "boxid" does not exist`
+2024-12-16 09:00:12 [ERROR]: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column "currentteamsize" does not exist`
+2024-12-16 09:00:12 [ERROR]: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column "currentteamsize" does not exist`
+2024-12-16 09:03:48 [ERROR]: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column "requiredTeamSize" does not exist`
+2024-12-16 09:03:48 [ERROR]: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column "requiredTeamSize" does not exist`
+2024-12-17 10:32:21 [ERROR]: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column "splitPricePlayer" does not exist`
+2024-12-17 10:32:33 [ERROR]: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column "splitPricePlayer" does not exist`
+2024-12-19 07:53:56 [ERROR]: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column "TeamName" does not exist`
+2024-12-19 07:53:56 [ERROR]: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column "TeamName" does not exist`
+2024-12-19 08:39:42 [ERROR]: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column "confirmed" does not exist`
+2024-12-19 08:39:42 [ERROR]: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column "confirmed" does not exist`
+2024-12-21 15:30:24 [ERROR]: number is not defined
+2024-12-21 15:31:01 [ERROR]: 
+Invalid `prisma.extraPlayers.create()` invocation:
+
+{
+  data: {
+    name: "asdasdwdad",
+    userId: 6,
+    numberOfPlayers: 2,
+    price: 80,
+    bookingId: 55,
+    paymentStatus: "waiting"
+                   ~~~~~~~~~
+  }
+}
+
+Argument `paymentStatus`: Invalid value provided. Expected Boolean, provided String.
+2024-12-21 15:41:09 [ERROR]: 
+Invalid `prisma.extraPlayers.update()` invocation:
+
+{
+  where: {
+    id: "3"
+        ~~~
+  },
+  data: {
+    paymentStatus: true
+  }
+}
+
+Argument `id`: Invalid value provided. Expected Int, provided String.
+2024-12-23 16:34:43 [ERROR]: Cannot read properties of undefined (reading 'toLowerCase')
+2024-12-31 10:12:21 [ERROR]: 
+Invalid `prisma.bookings.findMany()` invocation:
+
+
+error: Environment variable not found: DATABASE_URL.
+  -->  schema.prisma:13
+   | 
+12 |   provider = "postgresql"
+13 |   url      = env("DATABASE_URL")
+   | 
+
+Validation Error Count: 1
+2024-12-31 10:17:49 [ERROR]: 
+Invalid `prisma.bookings.findMany()` invocation:
+
+
+error: Environment variable not found: DATABASE_URL.
+  -->  schema.prisma:13
+   | 
+12 |   provider = "postgresql"
+13 |   url      = env("DATABASE_URL")
+   | 
+
+Validation Error Count: 1
+2025-01-01 14:00:45 [ERROR]: 
+Invalid `prisma.bookings.findMany()` invocation:
+
+
+Can't reach database server at `ep-misty-frog-a1ql2n59.ap-southeast-1.aws.neon.tech:5432`
+
+Please make sure your database server is running at `ep-misty-frog-a1ql2n59.ap-southeast-1.aws.neon.tech:5432`.
