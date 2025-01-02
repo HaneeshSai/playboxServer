@@ -137,30 +137,37 @@ export default function Box() {
   }, [details?.booking]);
 
   return (
-    <>
-      <div className="m-5 px-2">
-        <div className="flex gap-10 ml-10 p-2">
-          <div className="flex-1">
+    <div className="min-h-screen">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div className="grid lg:grid-cols-2 gap-8">
+          {/* Image Section */}
+          <div className="w-full">
             <img
-              src="https://playo.gumlet.io/7STRIKERS20231214115324318292/7Strikers1715227865223.jpg?w=700&format=webp&q=30&overlay=https://playo-website.gumlet.io/playo-website-v2/logos-icons/playo-logo.png&overlay_width_pct=0.2&overlay_height_pct=1&overlay_position=bottomright"
-              alt=""
-              className="rounded h-full w-full"
+              src="https://playo.gumlet.io/7STRIKERS20231214115324318292/7Strikers1715227865223.jpg?w=700&format=webp&q=30"
+              alt={details?.placeName}
+              className="w-full h-[300px] sm:h-[400px] object-cover rounded-lg"
             />
           </div>
-          <div className="flex-[1] flex flex-col gap-2 p-3">
-            <h1 className="text-5xl mr-32 truncate font-bold">
+
+          {/* Details Section */}
+          <div className="space-y-6">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold truncate">
               {details?.placeName}
             </h1>
-            <div className="mt-1 flex gap-20 mx-2">
-              <div className="flex gap-2 items-center">
-                <i className="fa-solid fa-phone"></i>
+
+            {/* Contact Info */}
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-8">
+              <div className="flex items-center gap-2">
+                <i className="fa-solid fa-phone text-gray-600"></i>
                 <span className="font-medium">{details?.phone}</span>
               </div>
-              <div className="flex gap-2 items-center">
-                <i className="fa-solid fa-envelope"></i>
+              <div className="flex items-center gap-2">
+                <i className="fa-solid fa-envelope text-gray-600"></i>
                 <span className="font-medium">{details?.email}</span>
               </div>
             </div>
+            {/* Status */}
+            <div className="text-lg">
             <p className=" ">
               {firstSessesion &&
               (waitingBooking.includes(firstSessesion) ||
@@ -213,31 +220,33 @@ export default function Box() {
                   </span>
                 </>
               ) : null}
-            </p>
+              </p>
+              </div>
 
-            <div className="">
+            {/* Available Sports */}
+            <div className="space-y-4">
               <p className="font-medium">Available Sports:</p>
-              <div className="flex gap-5 items-center mt-2">
-                {details?.availableSports.split(",").map((e, i) => (
+              <div className="flex flex-wrap gap-4">
+                {details?.availableSports.split(",").map((sport, index) => (
                   <div
-                    key={i}
-                    className={`p-3 bg-white border cursor-pointer border-slate-700 rounded`}
+                    key={index}
+                    className="p-3 bg-white border border-slate-700 rounded cursor-pointer hover:bg-gray-50 transition-colors"
                   >
-                    <img className="h-6" src={icons[e]} alt="" />
+                    <img className="h-6" src={icons[sport]} alt={sport} />
                   </div>
                 ))}
-
-                <div>
-                  <p className="text-4xl font-medium">
-                    <span className="text-2xl">at</span> ₹
+                <div className="flex items-center">
+                  <p className="text-2xl sm:text-4xl font-medium">
+                    <span className="text-xl sm:text-2xl">at</span> ₹
                     {details?.currentStatus[0].price}
-                    <span className="font-normal text-2xl">/hr</span>
+                    <span className="font-normal text-lg sm:text-2xl">/hr</span>
                   </p>
                 </div>
               </div>
             </div>
-
-            <div className="grid grid-cols-5 gap-x-2 gap-y-2 overflow-y-auto  mt-1">
+            
+             {/* Time Slots */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 max-h-[200px] overflow-y-auto">
               {details &&
                 getSessions(details?.timings).map((f, i) => (
                   <div key={i}>
@@ -299,9 +308,10 @@ export default function Box() {
                     )}
                   </div>
                 ))}
-            </div>
+              </div>
 
-            <div className="flex w-[80%] text-xl items-center gap-6">
+            {/* Action Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4">
               <button
                 onClick={() => {
                   if (!Cookies.get("token")) {
@@ -322,49 +332,55 @@ export default function Box() {
                   });
                   setShowBookingModal(true);
                 }}
-                className="text-white px-3 flex-1 py-1 rounded bg-orange-600"
+                 className="flex-1 bg-[#FF6B35] text-white px-6 py-3 rounded-lg font-medium hover:bg-[#FF6B35]/90 transition-colors"
               >
                 Book Now
               </button>
-              <button className="bg-white border border-slate-800 px-3 py-1 flex-1 rounded ">
+              <button className="flex-1 bg-white border border-slate-800 px-6 py-3 rounded-lg font-medium hover:bg-gray-50 transition-colors">
                 Share Spot
               </button>
             </div>
-            <div className="text-xl ml-2">
-              <p className="font-medium mr-1">
+
+            {/* Location */}
+            <div className="space-y-4">
+              <p className="text-xl font-medium">
                 Location:{" "}
                 <span className="text-lg font-normal">
                   {details?.fullAddress || "Not Available"}
                 </span>
               </p>
-
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d60927.792882490896!2d78.40417934863282!3d17.364355900000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb99361804411d%3A0x3588926f24f07fe8!2sBOX%20CRICKET-MARS%20SPORTS%20CLUB!5e0!3m2!1sen!2sin!4v1732458484118!5m2!1sen!2sin"
-                width="600"
-                height="200"
-                style={{ border: 0 }}
-                allowFullScreen=""
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              ></iframe>
+              <div className="w-full h-[200px] sm:h-[300px] rounded-lg overflow-hidden">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d60927.792882490896!2d78.40417934863282!3d17.364355900000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb99361804411d%3A0x3588926f24f07fe8!2sBOX%20CRICKET-MARS%20SPORTS%20CLUB!5e0!3m2!1sen!2sin!4v1732458484118!5m2!1sen!2sin"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen=""
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
             </div>
           </div>
         </div>
-        <div className="flex flex-col mx-12">
-          <div className="mt-5 p-3 rounded border border-slate-400">
-            <p className="text-xl underline ">Description</p>
-            <p className="text-lg">{details?.description}</p>
+        {/* Additional Information */}
+        <div className="mt-8 space-y-6">
+          <div className="bg-white rounded-lg shadow-sm p-6">
+            <h2 className="text-xl font-semibold mb-4">Description</h2>
+            <p className="text-gray-600">{details?.description}</p>
           </div>
-          <div className="mt-5 p-3 rounded border border-slate-400">
-            <p className="text-xl underline ">Rules</p>
-            <p className="text-lg">{details?.rules}</p>
+
+          <div className="bg-white rounded-lg shadow-sm p-6">
+            <h2 className="text-xl font-semibold mb-4">Rules</h2>
+            <p className="text-gray-600">{details?.rules}</p>
           </div>
-          <div className="mt-5 p-3 rounded border border-slate-400">
-            <p className="text-xl underline ">Refund Policy</p>
-            <p className="text-lg">{details?.refundPolicy}</p>
+
+          <div className="bg-white rounded-lg shadow-sm p-6">
+            <h2 className="text-xl font-semibold mb-4">Refund Policy</h2>
+            <p className="text-gray-600">{details?.refundPolicy}</p>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

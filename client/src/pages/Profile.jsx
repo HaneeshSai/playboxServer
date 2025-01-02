@@ -39,7 +39,6 @@ export default function Profile() {
             token: Cookies.get("token"),
           }
         );
-        console.log(response?.data.details);
         setData(response?.data.details);
       } catch (error) {
         console.log(error);
@@ -49,42 +48,58 @@ export default function Profile() {
 
     getProfile();
   }, []);
+
   return (
-    <div className="mx-56">
-      <h1 className="text-center text-3xl font-semibold my-10">Your Profile</h1>
-      <div>
-        <p className="text-2xl font-semibold">
-          Hey {data?.fullName}, Heres what you are looking for
-        </p>
-        <p>Name: {data?.fullName}</p>
-        <p>Email: {data?.email}</p>
-        <p>Phone: {data?.phone}</p>
-        <button
-          disabled={!data?.owner}
-          className={`bg-orange-600 ${
-            data?.owner ? "cursor-pointer" : "cursor-not-allowed"
-          } px-3 py-1 rounded mt-2 text-white font-medium`}
-        >
-          Access Owner Portal
-        </button>{" "}
-        {!data?.owner && (
-          <p className="text-red-600 font-medium">
-            (You Cannot access the Owners Portal as you do not own a Box Venue)
-          </p>
-        )}
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <h1 className="text-2xl sm:text-3xl font-semibold text-center mb-8">Your Profile</h1>
+      
+      <div className="bg-white rounded-lg shadow-sm p-6 mb-8">
+        <h2 className="text-xl sm:text-2xl font-semibold mb-4">
+          Hey {data?.fullName}, Here's what you are looking for
+        </h2>
+        <div className="space-y-2">
+          <p className="text-gray-600">Name: <span className="text-gray-900">{data?.fullName}</span></p>
+          <p className="text-gray-600">Email: <span className="text-gray-900">{data?.email}</span></p>
+          <p className="text-gray-600">Phone: <span className="text-gray-900">{data?.phone}</span></p>
+        </div>
+        <div className="mt-4">
+          <button
+            disabled={!data?.owner}
+            className={`bg-[#FF6B35] px-4 py-2 rounded text-white font-medium transition-colors ${
+              data?.owner ? "hover:bg-[#FF6B35]/90 cursor-pointer" : "opacity-50 cursor-not-allowed"
+            }`}
+          >
+            Access Owner Portal
+          </button>
+          {!data?.owner && (
+            <p className="text-red-600 font-medium mt-2">
+              (You Cannot access the Owner's Portal as you do not own a Box Venue)
+            </p>
+          )}
+        </div>
       </div>
-      <div className="mt-10 pb-20">
-        <h1 className="text-2xl font-semibold">Your Bookings</h1>
-        <div className="flex flex-col gap-5">
-          {bookings.map((e, i) => (
-            <div className="flex bg-white shadow-lg p-5 rounded-xl mt-3 justify-between items-center">
+
+      <div className="bg-white rounded-lg shadow-sm p-6">
+        <h2 className="text-xl sm:text-2xl font-semibold mb-6">Your Bookings</h2>
+        <div className="space-y-4">
+          {bookings.map((booking, index) => (
+            <div 
+              key={index}
+              className="bg-gray-50 rounded-lg p-4 shadow-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
+            >
               <div>
-                <p className="text-xl font-medium">{e.name}</p>
-                <p>{e.place}</p>
+                <h3 className="text-lg font-medium">{booking.name}</h3>
+                <p className="text-gray-600">{booking.place}</p>
               </div>
-              <p className="text-lg font-medium">₹{e.price}</p>
-              <p>@{e.time}</p>
-              <p>{e.status}</p>
+              <p className="text-lg font-medium">₹{booking.price}</p>
+              <p className="text-sm text-gray-600">@{booking.time}</p>
+              <p className={`font-medium ${
+                booking.status === 'Confirmed' ? 'text-green-600' :
+                booking.status === 'Ended' ? 'text-gray-600' :
+                'text-yellow-600'
+              }`}>
+                {booking.status}
+              </p>
             </div>
           ))}
         </div>
@@ -92,3 +107,4 @@ export default function Profile() {
     </div>
   );
 }
+

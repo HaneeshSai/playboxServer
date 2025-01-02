@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
-import { Route, Routes } from "react-router-dom";
-import axios, { Axios } from "axios";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import Cookies from "js-cookie";
 import delay from "../utils/delay";
-import { useNavigate } from "react-router-dom";
 import mainStore from "../store/mainStore";
 
 export default function Auth() {
@@ -56,94 +55,95 @@ export default function Auth() {
   };
 
   return (
-    <>
-      <div className="flex py-20 items-center h-full">
-        <div className="flex-[0.4] ml-20">
-          <img
-            className="rounded-xl "
-            src="https://playo-website.gumlet.io/playo-website-v3/hero/hero_left.png"
-            alt=""
-          />
-        </div>
-        <div className="flex-1">
-          <div className="flex flex-col">
-            <label htmlFor="" className="text-2xl font-medium">
+    <div className="flex flex-col lg:flex-row min-h-screen p-4 sm:p-6 lg:p-8">
+      <div className="lg:flex-[0.4] lg:pr-8 mb-8 lg:mb-0">
+        <img
+          className="rounded-xl w-full max-w-md mx-auto"
+          src="https://playo-website.gumlet.io/playo-website-v3/hero/hero_left.png"
+          alt="Sports"
+        />
+      </div>
+      <div className="flex-1 max-w-xl mx-auto">
+        <div className="space-y-6">
+          <div>
+            <label className="text-xl sm:text-2xl font-medium block">
               Full Name
             </label>
             <input
               type="text"
               onChange={(e) => setName(e.target.value)}
-              placeholder="Phone"
+              placeholder="Enter your full name"
               value={name}
-              className="px-2 border mb-3 border-slate-800 rounded py-1 w-[400px] outline-none"
+              className="px-3 py-2 border border-slate-800 rounded w-full outline-none mt-2"
             />
           </div>
+
           <div>
-            <p className="text-2xl font-medium">Do you own a BOX?</p>
-            <div className="flex gap-10">
-              <label htmlFor="" className="flex items-center gap-1">
+            <p className="text-xl sm:text-2xl font-medium">Do you own a BOX?</p>
+            <div className="flex gap-6 mt-2">
+              <label className="flex items-center gap-2">
                 <input
                   type="checkbox"
-                  name=""
                   checked={isOwner}
                   onChange={() => setIsOwner(true)}
-                  id=""
                 />
                 Yes
               </label>
-              <label htmlFor="" className="flex items-center gap-1">
+              <label className="flex items-center gap-2">
                 <input
                   type="checkbox"
-                  name=""
                   checked={!isOwner}
                   onChange={() => setIsOwner(false)}
-                  id=""
                 />
                 No
               </label>
             </div>
           </div>
-          <p className="text-2xl font-medium ">Phone</p>
-          <div className="flex items-center mt-2 gap-10">
-            <div className="flex rounded px-2 border border-slate-800 items-center bg-white w-[400px]">
-              <p>91+</p>
-              <input
-                type="text"
-                onChange={(e) => setPhone(e.target.value)}
-                value={phone}
-                placeholder="Phone"
-                className="px-2 py-1 w-full outline-none"
-              />
-            </div>
-            <button
-              onClick={handleGetOtp}
-              className="bg-[#269475] text-white px-4 py-1 rounded"
-            >
-              Get Otp
-            </button>
-          </div>
-          {showOtp ? (
-            <div className="mt-2">
-              <p>an OTP was sent to above mobile number.</p>
-              <div className="flex my-1 gap-10">
+
+          <div>
+            <p className="text-xl sm:text-2xl font-medium">Phone</p>
+            <div className="flex flex-col sm:flex-row gap-4 mt-2">
+              <div className="flex-1 flex rounded px-3 py-2 border border-slate-800 items-center bg-white">
+                <span className="text-gray-500 mr-2">+91</span>
                 <input
                   type="text"
-                  placeholder="OTP"
+                  onChange={(e) => setPhone(e.target.value)}
+                  value={phone}
+                  placeholder="Enter your phone number"
+                  className="w-full outline-none"
+                />
+              </div>
+              <button
+                onClick={handleGetOtp}
+                className="bg-[#269475] text-white px-6 py-2 rounded hover:bg-[#269475]/90 transition-colors"
+              >
+                Get OTP
+              </button>
+            </div>
+          </div>
+
+          {showOtp && (
+            <div className="space-y-4">
+              <p>An OTP was sent to the above mobile number.</p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <input
+                  type="text"
+                  placeholder="Enter OTP"
                   value={otp}
                   onChange={(e) => setOtp(e.target.value)}
-                  className="outline-none border tracking-[5px] border-slate-700 rounded px-2 py-1"
+                  className="flex-1 outline-none border border-slate-700 rounded px-3 py-2 tracking-[5px]"
                 />
                 <button
                   onClick={() => {
                     if (otp !== "12345") return toast.error("Invalid OTP");
                     else setOtpSuccess(true);
                   }}
-                  className="bg-[#269475] text-white rounded font-medium px-3 py-1"
+                  className="bg-[#269475] text-white rounded font-medium px-6 py-2 hover:bg-[#269475]/90 transition-colors"
                 >
                   {otpSuccess ? (
                     <i className="fa-regular text-white fa-circle-check"></i>
                   ) : (
-                    "Verify Otp"
+                    "Verify OTP"
                   )}
                 </button>
               </div>
@@ -155,36 +155,34 @@ export default function Auth() {
               <button
                 onClick={handleSubmit}
                 disabled={!otpSuccess}
-                className={`${
+                className={`w-full py-2 px-6 rounded font-medium transition-colors ${
                   otpSuccess
-                    ? "bg-[#FF6B35] cursor-pointer"
-                    : "bg-[#ffa886] cursor-not-allowed "
-                }  font-medium px-6 my-2 py-1 text-white rounded`}
+                    ? "bg-[#FF6B35] text-white cursor-pointer hover:bg-[#FF6B35]/90"
+                    : "bg-[#ffa886] cursor-not-allowed text-white/70"
+                }`}
               >
                 Submit
               </button>
             </div>
-          ) : null}
+          )}
 
-          <div className="flex gap-2 w-[200px]">
-            <div className="border-b border-black flex-1"></div>
-            <p className="flex-[0.1] text-center relative top-2 font-medium">
-              or
-            </p>
+          <div className="flex items-center gap-4 my-6">
+            <div className="flex-1 border-b border-black"></div>
+            <p className="text-sm font-medium">or</p>
             <div className="flex-1 border-b border-black"></div>
           </div>
-          <div>
-            <button className="flex items-center my-3 mt-5 gap-2 text-sm font-medium justify-center bg-[#efefef] border border-[#3f3f3f58] rounded px-10 py-1">
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/1200px-Google_%22G%22_logo.svg.png"
-                alt=""
-                className="h-7 "
-              />
-              Continue with Google
-            </button>
-          </div>
+
+          <button className="w-full flex items-center justify-center gap-3 py-2 px-4 bg-[#efefef] border border-[#3f3f3f58] rounded hover:bg-[#e5e5e5] transition-colors">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/1200px-Google_%22G%22_logo.svg.png"
+              alt="Google"
+              className="h-6"
+            />
+            <span className="font-medium">Continue with Google</span>
+          </button>
         </div>
       </div>
-    </>
+    </div>
   );
 }
+

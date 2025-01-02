@@ -178,86 +178,87 @@ export default function BoxRegister() {
   return (
     <>
       {showGoToOwner && (
-        <div className="fixed top-20 flex justify-center pt-36 bg-[#00000043] h-full w-full">
-          <div className="bg-white rounded-xl h-32 gap-4 px-5 flex flex-col items-center py-7">
-            <p>Your Box was Successfully Registered to our platform</p>
+        <div className="fixed inset-0 bg-black/40 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-xl p-6 max-w-sm w-full text-center">
+            <p className="mb-4">Your Box was Successfully Registered to our platform</p>
             <button
               onClick={() => navigate("/owner/portal")}
-              className="bg-[#FF6B35] font-medium px-7 text-white py-1"
+              className="bg-[#FF6B35] text-white px-6 py-2 rounded-lg font-medium hover:bg-[#FF6B35]/90 transition-colors"
             >
-              Go to Owners Portal
+              Go to Owner's Portal
             </button>
           </div>
         </div>
       )}
-      <div className="mx-24 py-14">
-        <h1 className="text-2xl font-semibold ">
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <h1 className="text-2xl sm:text-3xl font-semibold mb-8">
           Hello! Fill out the form to Register your Box
         </h1>
-        <div className="flex gap-2">
-          <div className="flex-1 mt-5">
-            <form
-              onSubmit={handleSubmit}
-              className="flex flex-col items-start gap-3"
-            >
-              {formInputs.map((e, i) => (
-                <div key={i} className="flex flex-col items-start gap-1 w-full">
-                  <label htmlFor="" className="text-lg font-medium">
-                    {e.label}
+
+        <div className="grid lg:grid-cols-2 gap-8">
+          <div className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              {formInputs.map((input, index) => (
+                <div key={index} className="space-y-2">
+                  <label className="text-lg font-medium block">
+                    {input.label}
                   </label>
-                  {e.type === "select" ? (
+                  {input.type === "select" ? (
                     <Select
                       closeMenuOnSelect={false}
                       components={animatedComponents}
                       defaultValue={[data.SportTypesValues[0]]}
                       value={formData.sports}
-                      name={e.name}
+                      name={input.name}
                       onChange={handleSelectChange}
                       isMulti
                       options={data.SportTypesValues}
+                      className="w-full"
                     />
-                  ) : e.type === "text" ? (
+                  ) : input.type === "text" ? (
                     <div className="w-full">
                       <input
-                        className="w-full border outline-none border-slate-800 rounded px-2 py-1"
-                        type={e.type}
-                        value={formData[e.name]}
+                        className="w-full px-3 py-2 border border-slate-800 rounded outline-none"
+                        type={input.type}
+                        value={formData[input.name]}
                         onChange={handleInputChange}
-                        placeholder={e.placeHolder}
-                        name={e.name}
+                        placeholder={input.placeHolder}
+                        name={input.name}
                       />
-                      {e.name === "timings" ? (
-                        <p className="text-sm text-red-500 font-medium">
+                      {input.name === "timings" && (
+                        <p className="text-sm text-red-500 font-medium mt-1">
                           Enter 12am - 12am if open for 24 hours.
                         </p>
-                      ) : null}
+                      )}
                     </div>
                   ) : (
                     <textarea
-                      name={e.name}
-                      placeholder={e.placeHolder}
-                      value={formData[e.name]}
+                      name={input.name}
+                      placeholder={input.placeHolder}
+                      value={formData[input.name]}
                       onChange={handleInputChange}
-                      id=""
-                      className="w-full border border-slate-800 rounded px-2 py-1 outline-none resize-none"
-                      rows="10"
-                    ></textarea>
+                      className="w-full px-3 py-2 border border-slate-800 rounded outline-none resize-none"
+                      rows="6"
+                    />
                   )}
                 </div>
               ))}
-              <div className="">
+              <div className="pt-4">
                 <button
-                  className="px-10 py-1 bg-[#FF6B35] mx-[40%] text-xl text-white rounded"
-                  onClick={handleSubmit}
+                  type="submit"
+                  className="w-full sm:w-auto px-8 py-2 bg-[#FF6B35] text-white text-lg rounded-lg hover:bg-[#FF6B35]/90 transition-colors"
                 >
                   Submit
                 </button>
               </div>
             </form>
           </div>
-          <div className="flex-1">
-            <div className="m-10 bg-white rounded-lg p-3">
-              <h1 className="text-center text-xl font-semibold">Our Policy</h1>
+
+          <div className="lg:pl-8">
+            <div className="bg-white rounded-lg shadow-sm p-6">
+              <h2 className="text-xl font-semibold text-center">Our Policy</h2>
+              {/* Add policy content here */}
             </div>
           </div>
         </div>

@@ -173,305 +173,297 @@ export default function BookingDetailsModal() {
   }, []);
 
   return (
-    <div className="fixed z-20 flex items-start  justify-center h-full w-full top-0 left-0 bg-[#0000009b]">
-      <div className="bg-white p-3 rounded mt-32 w-full mx-36 px-10 flex flex-col items-start">
-        <div className="flex justify-between w-full">
-          <h1 className="text-2xl font-semibold">Please Fill The Form</h1>
-          <div onClick={() => setShowBookingModal(false)}>
-            <i className="fa-regular text-xl cursor-pointer fa-circle-xmark"></i>
-          </div>
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 sm:my-5">
+      <div className="w-full max-w-4xl bg-white rounded-xl shadow-xl">
+        {/* Header */}
+        <div className="flex items-center justify-between p-4 sm:p-6 border-b">
+          <h2 className="text-xl sm:text-2xl font-semibold text-gray-900">
+            Please Fill The Form
+          </h2>
+          <button
+            onClick={() => setShowBookingModal(false)}
+            className="text-gray-400 hover:text-gray-500 transition-colors"
+          >
+            <i className="fa-regular fa-circle-xmark text-xl"></i>
+          </button>
         </div>
-        <div className="flex w-full items-start gap-10">
-          {specialSession ? (
-            <div className="flex-[0.5] pt-4">
-              <p className="text-lg font-medium">You are Joining a Team</p>
-              <div className="mt-2">
-                <label htmlFor="" className="font-medium">
-                  Enter your Name:{" "}
-                </label>
-                <input
-                  type="text"
-                  className="px-1.5 py-0.5 rounded-sm outline-none border border-slate-600"
-                  placeholder="Kiran's Cricket Team"
-                  value={teamName}
-                  onChange={(e) => setTeamName(e.target.value)}
-                />
-              </div>
-              <div className="mt-2">
-                <label htmlFor="" className="font-medium">
-                  Enter your Team Size:{" "}
-                </label>
-                <input
-                  type="number"
-                  className="pl-1.5 py-0.5 rounded-sm outline-none border border-slate-600"
-                  placeholder="10"
-                  value={currentTeamSize}
-                  onChange={(e) => setCurrentTeamSize(e.target.value)}
-                />
-              </div>
-              <p>
-                This Current Booking Requires more{" "}
-                <span className="font-semibold">
-                  {
-                    lookingBookings?.bookings[
-                      chosenBoxId?.bookingLooking.indexOf(lookingTimings)
-                    ].extraPlayersNeeded
-                  }
-                </span>{" "}
-                players
-              </p>
 
-              <p>
-                You will be Joining <br /> Team Name:{" "}
-                <span className="font-semibold">
-                  {
-                    lookingBookings?.bookings[
-                      chosenBoxId?.bookingLooking.indexOf(lookingTimings)
-                    ].teamName
-                  }
-                </span>{" "}
-                at <br />
-                <span className="font-semibold">
-                  {lookingTimings.slice(0, -2)}{" "}
-                  {lookingTimings[lookingTimings.length - 1] === "c"
-                    ? "Today"
-                    : "Tomorrow"}
-                </span>
-              </p>
-              <p>
-                Sport:{" "}
-                <span className="font-semibold capitalize">
-                  {
-                    lookingBookings?.bookings[
-                      chosenBoxId?.bookingLooking.indexOf(lookingTimings)
-                    ].sport
-                  }
-                </span>
-              </p>
-            </div>
-          ) : (
-            <div className="flex-[0.5]">
-              <div className="mt-4">
-                <label htmlFor="" className="font-medium">
-                  Enter a Team Name:{" "}
-                </label>
-                <input
-                  type="text"
-                  className="px-1.5 py-0.5 rounded-sm outline-none border border-slate-600"
-                  placeholder="Kiran's Cricket Team"
-                  value={teamName}
-                  onChange={(e) => setTeamName(e.target.value)}
-                />
-              </div>
-              <div className="mt-2">
-                <label htmlFor="" className="font-medium">
-                  Enter your Team Size:{" "}
-                </label>
-                <input
-                  type="number"
-                  className="pl-1.5 py-0.5 rounded-sm outline-none border border-slate-600"
-                  placeholder="10"
-                  value={currentTeamSize}
-                  onChange={(e) => setCurrentTeamSize(e.target.value)}
-                />
-              </div>
-              <div>
-                <p className="font-medium">Need Extra Players?</p>
-                <div className="flex gap-10">
-                  <label htmlFor="" className="flex items-center gap-2">
-                    <input
-                      type="checkbox"
-                      onChange={() => SetNeedExtraPlayers(true)}
-                      checked={needExtraPlayers}
-                    />
-                    Yes
-                  </label>
-                  <label htmlFor="" className="flex items-center gap-2">
-                    <input
-                      type="checkbox"
-                      onChange={() => {
-                        SetNeedExtraPlayers(false);
-                        setTotalTeamSize(0);
-                      }}
-                      checked={!needExtraPlayers}
-                    />
-                    No
-                  </label>
-                </div>
-              </div>
-              {needExtraPlayers ? (
-                <>
-                  <div className="">
-                    <label htmlFor="" className="font-medium">
-                      Number of Extra Players:{" "}
-                    </label>
-                    <input
-                      type="number"
-                      className="pl-1.5 py-0.5 rounded-sm outline-none border border-slate-600"
-                      placeholder="10"
-                      value={totalTeamSize}
-                      onChange={(e) => setTotalTeamSize(e.target.value)}
-                    />
-                    <p className="text-red-600 font-semibold">
-                      Total Team Size: {currentTeamSize}/
-                      {Number(totalTeamSize) + Number(currentTeamSize)}
-                    </p>
+        {/* Content */}
+        <div className="max-h-[80vh] overflow-y-auto">
+          <div className="p-4 sm:p-6">
+            <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
+              {/* Left Column - Form Fields */}
+              <div className="flex-1 space-y-6">
+                {specialSession ? (
+                  // Special Session Form
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-medium text-gray-900">
+                      You are Joining a Team
+                    </h3>
+                    <div className="space-y-4">
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700">
+                          Enter your Name
+                        </label>
+                        <input
+                          type="text"
+                          value={teamName}
+                          onChange={(e) => setTeamName(e.target.value)}
+                          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-[#FF6B35] focus:border-[#FF6B35] sm:text-sm"
+                          placeholder="Your name"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700">
+                          Enter your Team Size
+                        </label>
+                        <input
+                          type="number"
+                          value={currentTeamSize}
+                          onChange={(e) => setCurrentTeamSize(e.target.value)}
+                          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-[#FF6B35] focus:border-[#FF6B35] sm:text-sm"
+                          placeholder="Number of players"
+                        />
+                      </div>
+                      <div className="p-4 bg-gray-50 rounded-lg space-y-2">
+                        <p className="text-sm text-gray-600">
+                          This Current Booking Requires{" "}
+                          <span className="font-semibold text-gray-900">
+                            {lookingBookings?.bookings[
+                              chosenBoxId?.bookingLooking.indexOf(lookingTimings)
+                            ]?.extraPlayersNeeded || 0}
+                          </span>{" "}
+                          more players
+                        </p>
+                        <div className="space-y-1">
+                          <p className="text-sm text-gray-600">
+                            Team Name:{" "}
+                            <span className="font-medium text-gray-900">
+                              {lookingBookings?.bookings[
+                                chosenBoxId?.bookingLooking.indexOf(lookingTimings)
+                              ]?.teamName}
+                            </span>
+                          </p>
+                          <p className="text-sm text-gray-600">
+                            Time:{" "}
+                            <span className="font-medium text-gray-900">
+                              {lookingTimings?.slice(0, -2)}{" "}
+                              {lookingTimings?.[lookingTimings.length - 1] === "c"
+                                ? "Today"
+                                : "Tomorrow"}
+                            </span>
+                          </p>
+                          <p className="text-sm text-gray-600">
+                            Sport:{" "}
+                            <span className="font-medium capitalize text-gray-900">
+                              {lookingBookings?.bookings[
+                                chosenBoxId?.bookingLooking.indexOf(lookingTimings)
+                              ]?.sport}
+                            </span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </>
-              ) : null}
-            </div>
-          )}
-
-          <div className="flex-[1]">
-            <p className="font-medium">Choose Your Sport</p>
-
-            <div className="flex gap-2">
-              {chosenBoxId?.sports.split(",").map((e, i) => (
-                <div
-                  onClick={() => setSelectedSport(e)}
-                  className={`p-2 ${
-                    selectedSport !== e ? "bg-white" : "bg-slate-200"
-                  } rounded border cursor-pointer border-slate-700`}
-                  key={i}
-                >
-                  <img className="h-5 " src={icons[e]} alt="" />
-                </div>
-              ))}
-            </div>
-            <p className="font-medium">Choose Your Session</p>
-
-            <div className="grid mt-2 grid-cols-5 text-sm gap-2">
-              {chosenBoxId.sessions?.map((f, i) => (
-                <div key={i}>
-                  {chosenBoxId.waitingBooking.includes(f) ||
-                  (f !== "Next Day" &&
-                    f.split("-")[0].split(":")[1][0] === "3" &&
-                    (chosenBoxId.waitingBooking.includes(
-                      checkIfHalf(f).split("_")[0]
-                    ) ||
-                      chosenBoxId.waitingBooking.includes(
-                        checkIfHalf(f).split("_")[1]
-                      ))) ? (
-                    <div className="text-nowrap w-full px-1 items-center text-sm justify-center border cursor-pointer border-slate-700 rounded-sm font-medium text-center bg-yellow-100">
-                      <p className="flex items-center justify-center">
-                        {f.split(",")[0]}
-                      </p>
+                ) : (
+                  // Regular Booking Form
+                  <div className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700">
+                        Enter a Team Name
+                      </label>
+                      <input
+                        type="text"
+                        value={teamName}
+                        onChange={(e) => setTeamName(e.target.value)}
+                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-[#FF6B35] focus:border-[#FF6B35] sm:text-sm"
+                        placeholder="Team name"
+                      />
                     </div>
-                  ) : (
-                    <div
-                      onClick={() => {
-                        if (
-                          chosenBoxId.bookingLooking.includes(f) ||
-                          (f !== "Next Day" &&
-                            f.split("-")[0].split(":")[1][0] === "3" &&
-                            (chosenBoxId.bookingLooking.includes(
-                              checkIfHalf(f).split("_")[0]
-                            ) ||
-                              chosenBoxId.bookingLooking.includes(
-                                checkIfHalf(f).split("_")[1]
-                              )))
-                        ) {
-                          setLookingTimings(f);
-                          setTimings([]);
-                          setSpecialSession(true);
-                        } else if (
-                          chosenBoxId.booked.includes(f) ||
-                          (f !== "Next Day" &&
-                            f.split("-")[0].split(":")[1][0] === "3" &&
-                            (chosenBoxId.booked.includes(
-                              checkIfHalf(f).split("_")[0]
-                            ) ||
-                              chosenBoxId.booked.includes(
-                                checkIfHalf(f).split("_")[1]
-                              )))
-                        ) {
-                          return;
-                        } else {
-                          setSpecialSession(false);
-                          setTimings((prevTimings) => {
-                            if (prevTimings.includes(f)) {
-                              return prevTimings.filter((time) => time !== f);
-                            } else {
-                              return [...prevTimings, f];
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700">
+                        Enter your Team Size
+                      </label>
+                      <input
+                        type="number"
+                        value={currentTeamSize}
+                        onChange={(e) => setCurrentTeamSize(e.target.value)}
+                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-[#FF6B35] focus:border-[#FF6B35] sm:text-sm"
+                        placeholder="Number of players"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="block text-sm font-medium text-gray-700">
+                        Need Extra Players?
+                      </label>
+                      <div className="flex gap-6">
+                        <label className="flex items-center gap-2">
+                          <input
+                            type="checkbox"
+                            onChange={() => SetNeedExtraPlayers(true)}
+                            checked={needExtraPlayers}
+                            className="rounded border-gray-300 text-[#FF6B35] focus:ring-[#FF6B35]"
+                          />
+                          <span className="text-sm text-gray-700">Yes</span>
+                        </label>
+                        <label className="flex items-center gap-2">
+                          <input
+                            type="checkbox"
+                            onChange={() => {
+                              SetNeedExtraPlayers(false);
+                              setTotalTeamSize(0);
+                            }}
+                            checked={!needExtraPlayers}
+                            className="rounded border-gray-300 text-[#FF6B35] focus:ring-[#FF6B35]"
+                          />
+                          <span className="text-sm text-gray-700">No</span>
+                        </label>
+                      </div>
+                    </div>
+                    {needExtraPlayers && (
+                      <div className="space-y-2">
+                        <label className="block text-sm font-medium text-gray-700">
+                          Number of Extra Players
+                        </label>
+                        <input
+                          type="number"
+                          value={totalTeamSize}
+                          onChange={(e) => setTotalTeamSize(e.target.value)}
+                          className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-[#FF6B35] focus:border-[#FF6B35] sm:text-sm"
+                          placeholder="Number of extra players needed"
+                        />
+                        <p className="text-sm font-medium text-gray-900">
+                          Total Team Size:{" "}
+                          <span className="text-[#FF6B35]">
+                            {currentTeamSize}
+                          </span>
+                          <span className="text-gray-400">/</span>
+                          <span className="text-green-600">
+                            {Number(totalTeamSize) + Number(currentTeamSize)}
+                          </span>
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+
+              {/* Right Column - Sport Selection & Sessions */}
+              <div className="flex-1 space-y-6">
+                <div className="space-y-4">
+                  <label className="block text-sm font-medium text-gray-700">
+                    Choose Your Sport
+                  </label>
+                  <div className="flex flex-wrap gap-2">
+                    {chosenBoxId?.sports.split(",").map((sport, i) => (
+                      <button
+                        key={i}
+                        onClick={() => setSelectedSport(sport)}
+                        className={`p-3 rounded-lg border transition-colors ${
+                          selectedSport === sport
+                            ? "bg-gray-100 border-gray-300"
+                            : "bg-white border-gray-200 hover:bg-gray-50"
+                        }`}
+                      >
+                        <img className="h-6 w-6" src={icons[sport]} alt={sport} />
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <label className="block text-sm font-medium text-gray-700">
+                    Choose Your Session
+                  </label>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2">
+                    {chosenBoxId.sessions?.map((session, i) => {
+                      const isWaiting =
+                        chosenBoxId.waitingBooking.includes(session);
+                      const isBooked = chosenBoxId.booked.includes(session);
+                      const isLooking =
+                        chosenBoxId.bookingLooking.includes(session);
+                      const isSelected = timings.includes(session);
+
+                      return (
+                        <button
+                          key={i}
+                          onClick={() => {
+                            if (isLooking) {
+                              setLookingTimings(session);
+                              setTimings([]);
+                              setSpecialSession(true);
+                            } else if (!isBooked && !isWaiting) {
+                              setSpecialSession(false);
+                              setTimings((prev) =>
+                                prev.includes(session)
+                                  ? prev.filter((t) => t !== session)
+                                  : [...prev, session]
+                              );
                             }
-                          });
-                        }
-                      }}
-                      className={`text-nowrap w-full px-1 items-center text-sm justify-center border border-slate-700 rounded-sm font-medium ${
-                        chosenBoxId.booked.includes(f)
-                          ? "bg-red-200  cursor-not-allowed"
-                          : f !== "Next Day" &&
-                            f.split("-")[0].split(":")[1][0] === "3" &&
-                            (chosenBoxId.booked.includes(
-                              checkIfHalf(f).split("_")[0]
-                            ) ||
-                              chosenBoxId.booked.includes(
-                                checkIfHalf(f).split("_")[1]
-                              ))
-                          ? "bg-red-200 cursor-not-allowed"
-                          : chosenBoxId.bookingLooking.includes(f)
-                          ? "bg-gradient-to-r from-pink-500 via-purple-500 to-teal-500 text-white cursor-pointer"
-                          : f !== "Next Day" &&
-                            f.split("-")[0].split(":")[1][0] === "3" &&
-                            (chosenBoxId.bookingLooking.includes(
-                              checkIfHalf(f).split("_")[0]
-                            ) ||
-                              chosenBoxId.bookingLooking.includes(
-                                checkIfHalf(f).split("_")[1]
-                              ))
-                          ? "bg-gradient-to-r from-pink-500 via-purple-500 to-teal-500 text-white cursor-pointer"
-                          : timings.includes(f)
-                          ? "bg-green-400 cursor-pointer"
-                          : "bg-green-200 cursor-pointer"
-                      }   text-center`}
-                    >
-                      <p className="flex items-center justify-center">
-                        {f.split(",")[0]}
-                      </p>
-                    </div>
-                  )}
+                          }}
+                          disabled={isBooked || isWaiting}
+                          className={`px-2 py-1.5 text-sm font-medium rounded-md transition-colors ${
+                            isWaiting
+                              ? "bg-yellow-100 border border-yellow-200 text-yellow-800"
+                              : isBooked
+                              ? "bg-red-100 border border-red-200 text-red-800 cursor-not-allowed"
+                              : isLooking
+                              ? "bg-gradient-to-r from-pink-500 via-purple-500 to-teal-500 text-white"
+                              : isSelected
+                              ? "bg-green-500 text-white"
+                              : "bg-green-100 border border-green-200 text-green-800 hover:bg-green-200"
+                          }`}
+                        >
+                          {session.split(",")[0]}
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
-              ))}
+
+                <div className="p-4 bg-gray-50 rounded-lg">
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm font-medium text-gray-700">
+                      Total Price:
+                    </span>
+                    <span className="text-xl font-semibold text-gray-900">
+                      ₹
+                      {specialSession
+                        ? lookingBookings?.bookings[
+                            chosenBoxId?.bookingLooking.indexOf(lookingTimings)
+                          ]?.splitPricePerPlayer * Number(currentTeamSize)
+                        : needExtraPlayers
+                        ? Number(currentTeamSize) > 0
+                          ? Math.ceil(
+                              Math.round(
+                                (chosenBoxId.price /
+                                  (Number(totalTeamSize) +
+                                    Number(currentTeamSize))) *
+                                  timings.length *
+                                  Number(currentTeamSize)
+                              ) / 10
+                            ) * 10
+                          : 0
+                        : chosenBoxId.price * timings.length}
+                    </span>
+                  </div>
+                </div>
+              </div>
             </div>
-            <p className="mt-2">
-              Total Price:{" "}
-              {specialSession ? (
-                <span>
-                  {lookingBookings?.bookings[
-                    chosenBoxId?.bookingLooking.indexOf(lookingTimings)
-                  ].splitPricePerPlayer * Number(currentTeamSize)}
-                </span>
-              ) : (
-                <span className="text-xl font-semibold">
-                  {needExtraPlayers
-                    ? Number(currentTeamSize) > 0
-                      ? Math.ceil(
-                          Math.round(
-                            (chosenBoxId.price /
-                              (Number(totalTeamSize) +
-                                Number(currentTeamSize))) *
-                              timings.length *
-                              Number(currentTeamSize)
-                          ) / 10
-                        ) * 10
-                      : 0
-                    : chosenBoxId.price * timings.length}
-                  /-
-                </span>
-              )}
-            </p>
           </div>
         </div>
-        <div className="w-full text-center">
+
+        {/* Footer */}
+        <div className="sticky bottom-0 p-4 sm:p-6 border-t bg-gray-50">
           <button
             onClick={handleSubmit}
-            className="w-full  mt-3 bg-orange-600 text-white font-medium rounded py-1"
+            className="w-full bg-[#FF6B35] text-white font-medium rounded-lg py-2 px-4 hover:bg-[#ff6b35e0] transition-colors"
           >
             Confirm Booking
           </button>
-          <p className="text-xs text-red-700 font-medium">
-            Note: You will be redirected to the Payment Page. Others can Book
-            the Box if they make the payment before you do.
+          <p className="mt-2 text-xs text-center text-red-600">
+            Note: You will be redirected to the Payment Page. Others can Book the
+            Box if they make the payment before you do.
           </p>
         </div>
       </div>

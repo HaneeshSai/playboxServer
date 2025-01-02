@@ -46,31 +46,33 @@ export default function FindSpot() {
   };
 
   return (
-    <div className="min-h-screen mt-10 mx-20 flex flex-col items-center">
-      <h1 className="text-3xl font-semibold text-center">Find Your Spot</h1>
-      <div className="flex items-center gap-3 mt-5 border shadow-lg border-slate-600 bg-white rounded px-2 py-1 w-64 justify-between">
+    <div className="min-h-screen px-4 sm:px-6 lg:px-20 py-10 flex flex-col items-center">
+      <h1 className="text-2xl sm:text-3xl font-semibold text-center">Find Your Spot</h1>
+      <div className="flex items-center gap-3 mt-5 border shadow-lg border-slate-600 bg-white rounded px-2 py-1 w-full max-w-sm justify-between">
         <input
           type="text"
           onChange={handleInputChange}
-          className="bg-[#fff0] w-full outline-none"
+          className="bg-transparent w-full outline-none"
           placeholder="Enter Your Sport or Place"
         />
         <i className="fa-solid fa-magnifying-glass"></i>
       </div>
-      <h1 className="text-left w-full text-xl font-medium">
-        Based on your {query.length > 3 ? "Query " : "Location "}
-        <span className="text-green-800">
-          {query.length > 3 ? query : "Hyderabad"}
-        </span>
-      </h1>
+      <div className="w-full mt-6">
+        <h1 className="text-lg sm:text-xl font-medium">
+          Based on your {query.length > 3 ? "Query " : "Location "}
+          <span className="text-green-800">
+            {query.length > 3 ? query : "Hyderabad"}
+          </span>
+        </h1>
+      </div>
       {loading ? (
         <div className="my-10 text-xl font-medium">Loading...</div>
       ) : (
-        <div className="grid grid-cols-3 my-10 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full my-10 gap-6 lg:gap-10">
           {boxes?.length > 0 ? (
             boxes.map((e, i) => <BoxCard key={i} e={e} />)
           ) : (
-            <div className="text-center text-lg font-medium col-span-3">
+            <div className="text-center text-lg font-medium col-span-full">
               No spots found for your search.
             </div>
           )}
@@ -79,3 +81,4 @@ export default function FindSpot() {
     </div>
   );
 }
+

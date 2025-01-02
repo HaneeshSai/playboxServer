@@ -100,181 +100,144 @@ export default function BoxCard({ e }) {
   }, [e.booking]);
 
   return (
-    <div className="hover:scale-[1.02] duration-300 cardShadow rounded relative ">
-      {e?.currentStatus[0].currentTeamSize <
-      e?.currentStatus[0].totalTeamSize ? (
-        <div className="absolute top-0 right-0">
-          <button
-            onClick={() => {}}
-            class="bg-gradient-to-r from-pink-500 via-purple-500 to-teal-500 text-white font-bold py-2 px-4 rounded-bl-md "
-          >
+     <div className="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+      {/* Looking for Players Badge */}
+      {e?.currentStatus[0].currentTeamSize < e?.currentStatus[0].totalTeamSize && (
+        <div className="absolute top-0 right-0 z-10">
+          <div className="bg-gradient-to-r from-pink-500 via-purple-500 to-teal-500 text-white text-sm font-semibold py-1.5 px-3 rounded-bl-lg">
             Looking for Players
-          </button>
-        </div>
-      ) : null}
-
-      <img
-        onClick={() => navigate(`/box/${e?.currentStatus[0].boxId}`)}
-        src="https://playo.gumlet.io/7STRIKERS20231214115324318292/7Strikers1715227865223.jpg?w=700&format=webp&q=30&overlay=https://playo-website.gumlet.io/playo-website-v2/logos-icons/playo-logo.png&overlay_width_pct=0.2&overlay_height_pct=1&overlay_position=bottomright"
-        className="w-full h-[66%] rounded object-cover"
-        alt=""
-      />
-      <div className="flex gap-2 absolute bottom-[165px] left-4">
-        {e?.availableSports.split(",").map((e, i) => (
-          <div className="p-2 bg-white rounded-full" key={i}>
-            <img className="h-5 " src={icons[e]} alt="" />
           </div>
-        ))}
-      </div>
-      <div className="p-3">
-        <div className=" flex items-center  justify-between">
-          <p className="text-xl truncate flex-1 font-semibold">
-            {e?.placeName}
-          </p>
-          <p>Ratings here</p>
         </div>
-        <div className="flex items-center justify-between">
-          <p className="text-lg">{e?.area}</p>
-          <p className=" ">
-            {firstSessesion &&
-            (waitingBooking.includes(firstSessesion) ||
-              (firstSessesion !== "Next Day" &&
-                firstSessesion?.split("-")[0].split(":")[1][0] === "3" &&
-                (waitingBooking.includes(
-                  checkIfHalf(firstSessesion).split("_")[0]
-                ) ||
-                  waitingBooking.includes(
-                    checkIfHalf(firstSessesion).split("_")[1]
-                  )))) ? (
-              <span>
-                <i className="fa-solid fa-hourglass-half"></i> Waiting for
-                Confirmation
-              </span>
-            ) : e?.currentStatus[0].currentTeamSize ===
-                e?.currentStatus[0].totalTeamSize &&
-              e?.currentStatus[0].currentTeamSize !== 0 ? (
-              <span>
-                <i className="fa-solid text-red-600 fa-circle-dot"></i> Occupied
-              </span>
-            ) : e?.currentStatus[0].currentTeamSize === 0 ? (
-              <span>
-                <i className="fa-solid text-green-600 fa-circle-dot"></i>{" "}
-                Available Now
-              </span>
-            ) : (
-              <span>
-                <i className="fa-solid text-yellow-400 fa-circle-dot"></i>{" "}
-                Looking
-              </span>
-            )}
-            {e.currentStatus[0].currentTeamSize <
-            e.currentStatus[0].totalTeamSize ? (
-              <>
-                <span
-                  className={`${
-                    e?.currentStatus[0].currentTeamSize <
-                    e?.currentStatus[0].totalTeamSize
-                      ? "text-red-600"
-                      : "text-green-500"
-                  } font-semibold`}
-                >
-                  : {e?.currentStatus[0].currentTeamSize}
-                </span>
+      )}
 
-                <span className="text-green-500 font-semibold">
-                  /{e?.currentStatus[0].totalTeamSize}
-                </span>
-              </>
-            ) : null}
-          </p>
-        </div>
-
-        <div className="grid grid-cols-3 gap-x-2 gap-y-2 overflow-y-auto h-12 mt-1">
-          {getSessions(e?.timings).map((f, i) => (
-            <div key={i}>
-              {waitingBooking.includes(f) ||
-              (f !== "Next Day" &&
-                f.split("-")[0].split(":")[1][0] === "3" &&
-                (waitingBooking.includes(checkIfHalf(f).split("_")[0]) ||
-                  waitingBooking.includes(checkIfHalf(f).split("_")[1]))) ? (
-                <div className="text-nowrap w-full px-1 items-center text-sm justify-center border cursor-pointer border-slate-700 rounded-sm font-medium text-center bg-yellow-100">
-                  <p className="flex items-center justify-center">
-                    {f.split(",")[0]}
-                  </p>
-                </div>
-              ) : (
-                <div
-                  onClick={() => {
-                    if (
-                      bookingLooking.includes(f) ||
-                      (f !== "Next Day" &&
-                        f.split("-")[0].split(":")[1][0] === "3" &&
-                        (bookingLooking.includes(
-                          checkIfHalf(f).split("_")[0]
-                        ) ||
-                          bookingLooking.includes(
-                            checkIfHalf(f).split("_")[1]
-                          )))
-                    ) {
-                      toast.success("clicked on extraplayers session");
-                    }
-                  }}
-                  className={`text-nowrap w-full px-1 items-center text-sm justify-center border cursor-pointer border-slate-700 rounded-sm font-medium ${
-                    booked.includes(f)
-                      ? "bg-red-200"
-                      : f !== "Next Day" &&
-                        f.split("-")[0].split(":")[1][0] === "3" &&
-                        (booked.includes(checkIfHalf(f).split("_")[0]) ||
-                          booked.includes(checkIfHalf(f).split("_")[1]))
-                      ? "bg-red-200"
-                      : bookingLooking.includes(f)
-                      ? "bg-gradient-to-r from-pink-500 via-purple-500 to-teal-500 text-white"
-                      : f !== "Next Day" &&
-                        f.split("-")[0].split(":")[1][0] === "3" &&
-                        (bookingLooking.includes(
-                          checkIfHalf(f).split("_")[0]
-                        ) ||
-                          bookingLooking.includes(checkIfHalf(f).split("_")[1]))
-                      ? "bg-gradient-to-r from-pink-500 via-purple-500 to-teal-500 text-white"
-                      : "bg-green-200"
-                  }   text-center`}
-                >
-                  <p className="flex items-center justify-center">
-                    {f.split(",")[0]}
-                  </p>
-                </div>
-              )}
+      {/* Image and Sports Icons */}
+      <div className="relative" onClick={() => navigate(`/box/${e?.currentStatus[0].boxId}`)}>
+        <img
+          src="https://playo.gumlet.io/7STRIKERS20231214115324318292/7Strikers1715227865223.jpg?w=700&format=webp&q=30"
+          className="w-full h-48 sm:h-56 object-cover transition-transform duration-300 group-hover:scale-105"
+          alt={e?.placeName}
+        />
+        <div className="absolute bottom-4 left-4 flex gap-2">
+          {e?.availableSports.split(",").map((sport, i) => (
+            <div 
+              key={i}
+              className="p-2 bg-white rounded-full shadow-md backdrop-blur-sm bg-white/90 transition-transform hover:scale-110"
+            >
+              <img className="h-5 w-5" src={icons[sport]} alt={sport} />
             </div>
           ))}
         </div>
+      </div>
 
-        <div className="flex w-full mt-1">
-          <button
-            onClick={() => {
-              if (!Cookies.get("token")) {
-                navigate("/auth");
-                return;
-              }
-
-              setChosenBoxId({
-                id: e?.currentStatus[0].boxId,
-                sessions: getSessions(e?.timings),
-                price: e?.currentStatus[0].price,
-                sports: e?.availableSports,
-                booked: booked,
-                bookingLooking,
-                waitingBooking,
-                firstSessesion,
-              });
-              setShowBookingModal(true);
-            }}
-            className="bg-[#269475] w-full hover:bg-[#1b493c] duration-300 text-white px-3 py-0.5 rounded"
-          >
-            Book Now at{" "}
-            <span className="font-medium">{e?.currentStatus[0].price}/-</span>
-          </button>
+      {/* Content */}
+      <div className="p-4 space-y-3">
+        {/* Header */}
+        <div className="flex items-center justify-between">
+          <h3 className="text-lg font-semibold truncate pr-2">{e?.placeName}</h3>
+          <div className="flex items-center gap-1">
+            <i className="fa-solid fa-star text-yellow-400"></i>
+            <span className="text-sm font-medium">4.5</span>
+          </div>
         </div>
+
+        {/* Location and Status */}
+        <div className="flex items-center justify-between text-sm">
+          <p className="text-gray-600">{e?.area}</p>
+          <div className="flex items-center gap-1.5">
+            {firstSessesion && (
+              <>
+                {waitingBooking.includes(firstSessesion) ? (
+                  <span className="flex items-center gap-1.5">
+                    <i className="fa-solid fa-hourglass-half text-yellow-500"></i>
+                    <span className="text-yellow-500 font-medium">Waiting</span>
+                  </span>
+                ) : e?.currentStatus[0].currentTeamSize === e?.currentStatus[0].totalTeamSize ? (
+                  <span className="flex items-center gap-1.5">
+                    <i className="fa-solid fa-circle-dot text-red-600"></i>
+                    <span className="text-red-600 font-medium">Occupied</span>
+                  </span>
+                ) : e?.currentStatus[0].currentTeamSize === 0 ? (
+                  <span className="flex items-center gap-1.5">
+                    <i className="fa-solid fa-circle-dot text-green-600"></i>
+                    <span className="text-green-600 font-medium">Available</span>
+                  </span>
+                ) : (
+                  <span className="flex items-center gap-1.5">
+                    <i className="fa-solid fa-circle-dot text-yellow-400"></i>
+                    <span className="text-yellow-400 font-medium">Looking</span>
+                  </span>
+                )}
+                {e?.currentStatus[0].currentTeamSize < e?.currentStatus[0].totalTeamSize && (
+                  <span className="font-medium">
+                    <span className="text-red-600">{e?.currentStatus[0].currentTeamSize}</span>
+                    <span className="text-gray-400">/</span>
+                    <span className="text-green-600">{e?.currentStatus[0].totalTeamSize}</span>
+                  </span>
+                )}
+              </>
+            )}
+          </div>
+        </div>
+
+        {/* Time Slots */}
+        <div className="grid grid-cols-3 gap-1.5 max-h-24 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+          {getSessions(e?.timings).map((slot, i) => {
+            const isWaiting = waitingBooking.includes(slot);
+            const isBooked = booked.includes(slot);
+            const isLooking = bookingLooking.includes(slot);
+            
+            return (
+              <div
+                key={i}
+                onClick={() => {
+                  if (isLooking) {
+                    toast.success("Clicked on players needed session");
+                  }
+                }}
+                className={`
+                  px-2 py-1 text-xs font-medium rounded border transition-colors
+                  ${isWaiting ? 'bg-yellow-100 border-yellow-200 text-yellow-800' : 
+                    isBooked ? 'bg-red-100 border-red-200 text-red-800' :
+                    isLooking ? 'bg-gradient-to-r from-pink-500 via-purple-500 to-teal-500 text-white border-transparent' :
+                    'bg-green-100 border-green-200 text-green-800'}
+                  ${isLooking ? 'cursor-pointer hover:opacity-90' : 'cursor-default'}
+                `}
+              >
+                <p className="text-center truncate">
+                  {slot.split(",")[0]}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Book Now Button */}
+        <button
+          onClick={() => {
+            if (!Cookies.get("token")) {
+              navigate("/auth");
+              return;
+            }
+
+            setChosenBoxId({
+              id: e?.currentStatus[0].boxId,
+              sessions: getSessions(e?.timings),
+              price: e?.currentStatus[0].price,
+              sports: e?.availableSports,
+              booked,
+              bookingLooking,
+              waitingBooking,
+              firstSessesion,
+            });
+            setShowBookingModal(true);
+          }}
+          className="w-full bg-[#269475] hover:bg-[#1b493c] text-white py-2 px-4 rounded-lg font-medium transition-colors flex items-center justify-center gap-2"
+        >
+          <span>Book Now at</span>
+          <span className="font-semibold">₹{e?.currentStatus[0].price}</span>
+        </button>
       </div>
     </div>
   );
 }
+
